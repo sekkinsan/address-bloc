@@ -106,4 +106,35 @@ describe "#import_from_csv" do
     expect(book_size).to eq 5
   end
 end
+
+describe "importing from entries2.csv" do
+  it "imports the correct number of entries" do
+    book.import_from_csv("entries_2.csv")
+    book_size = book.entries.size
+
+    #Check size of entries in AddressBook
+    expect(book_size).to eq 3
+  end
+
+  it "imports the 1st entry" do
+    book.import_from_csv("entries_2.csv")
+    #check first entry
+    entry_one = book.entries[0]
+    check_entry(entry_one,"Jane","555-555-5555","jane@blocmail.com")
+  end
+  it "imports the 2nd entry" do
+    book.import_from_csv("entries_2.csv")
+    #check second entry
+    entry_two = book.entries[1]
+    check_entry(entry_two,"Jessica","555-555-5124","jessica@blocmail.com")
+  end
+
+  it "imports the 3rd entry" do
+    book.import_from_csv("entries_2.csv")
+    #check third entry
+    entry_three = book.entries[2]
+    check_entry(entry_three,"Justine","555-555-1902","justine@blocmail.com")
+  end
+
+end
 end
