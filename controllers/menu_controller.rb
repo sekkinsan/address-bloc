@@ -73,15 +73,24 @@ def view_entry_number
   #user inputs entry number
   print "Entry Number: "
   entry_number = gets.chomp
+  entry_number = entry_number.to_i
 
-  puts "#{entry_number} is not a valid input" unless entry_number.is_a? integer
+  found_entry = nil
 
-  address_book.entries.each do |entry|
-    system "clear"
-    puts entry.to_s
+  address_book.entries.each_with_index do |entry, index|
+    if index == entry_number - 1
+      found_entry = entry
+      print "found"
+      break
+    end
   end
 
-
+  if found_entry.nil?
+    print "Invalid Entry Number"
+  else
+    print "printing found"
+    print found_entry.to_s
+  end
 end
 
 def create_entry
