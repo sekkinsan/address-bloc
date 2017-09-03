@@ -80,7 +80,6 @@ def view_entry_number
   address_book.entries.each_with_index do |entry, index|
     if index == entry_number - 1
       found_entry = entry
-      print "found"
       break
     end
   end
@@ -88,7 +87,6 @@ def view_entry_number
   if found_entry.nil?
     print "Invalid Entry Number"
   else
-    print "printing found"
     print found_entry.to_s
   end
 end
