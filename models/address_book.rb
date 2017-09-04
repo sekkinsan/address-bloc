@@ -50,4 +50,31 @@ class AddressBook
       add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
     end
   end
+
+  #Search AddressBook for a specific entry by name
+  def binary_search(name)
+    #save index of leftmost item in array in variable lower, rightmost in variable upper
+    lower = 0
+    upper = entries.length - 1
+
+    #loop while our lower index <= upper index
+    while lower <= upper
+      #find middle index by (lower + upper)/2; Ruby truncates any decimal numbers
+      mid = (lower + upper) / 2
+      mid_name = entries[mid].name
+
+      #compare name we're searching for to name of middle index, mid_name. use == operator when comparing to make the search case sensitive
+      if name == mid_name
+        return entries[mid]
+      elsif name < mid_name
+        upper = mid - 1
+      elsif name > mid_name
+        lower = mid + 1
+      end
+    end
+    #divide and conquer to the point where no match is found, then return nil
+    return nil
+  end
+
+  #Iterative_search
 end
