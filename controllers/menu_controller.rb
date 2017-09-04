@@ -16,6 +16,7 @@ class MenuController
     puts "4 - Import entries from a CSV"
     puts "5 - Exit"
     puts "6 - View Entry Number n"
+    puts "7 - DESTROY ALL EVIDENCE"
     print "Enter your selection: "
 
     #retrieve user input fromcommand line using gets(gets reads the next line from standard input)
@@ -45,6 +46,10 @@ class MenuController
     when 6
       system "clear"
       view_entry_number
+      main_menu
+    when 7
+      system "clear"
+      destroy
       main_menu
       #use else to catch invalid user input and prompt retry
     else
@@ -174,6 +179,12 @@ def read_csv
     puts "#{file_name} is not a valid CSV file, please enter the name of a valid CSV file"
     read_csv
   end
+end
+
+def destroy
+  address_book.entries.clear
+  puts "All evidence has been destroyed"
+  main_menu
 end
 
 def entry_submenu(entry)
